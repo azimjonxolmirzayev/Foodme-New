@@ -99,6 +99,7 @@ function Login() {
       setIsOtpError(true);
     }
   };
+
   useEffect(() => {
     if (isOtpError) {
       inputRefs.current.forEach((input) => {
@@ -121,14 +122,16 @@ function Login() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white p-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-white p-4 md:p-8 lg:p-16">
       <div className="flex items-center justify-center mb-8">
-        <div className="text-4xl font-bold text-black">
-          <img src={logo} className="w-60" />
+        <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-black">
+          <img src={logo} className="w-32 md:w-48 lg:w-60" alt="FoodME Logo" />
         </div>
       </div>
-      <h1 className="text-3xl font-bold text-center mb-4 ">Kodini Kiriting</h1>
-      <p className="text-center mb-8">
+      <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-center mb-4">
+        Kodini Kiriting
+      </h1>
+      <p className="text-sm md:text-base lg:text-lg text-center mb-8">
         <a
           href="tg://resolve?domain=foodme_robot"
           className="text-lime-500 leading-6"
@@ -137,7 +140,7 @@ function Login() {
         </a>{" "}
         telegram botiga kiring va 1 daqiqalik <br /> kodingizni oling.
       </p>
-      <div className="flex space-x-4 mb-4">
+      <div className="flex space-x-2 md:space-x-4 mb-4">
         {[...Array(6)].map((_, index) => (
           <input
             aria-label={`OTP input ${index + 1}`}
@@ -149,7 +152,7 @@ function Login() {
             onKeyDown={(e) => handleKeyDown(e, index)}
             onPaste={handlePaste}
             ref={(el) => (inputRefs.current[index] = el)}
-            className={`w-12 h-12 text-center text-xl border-2 rounded-lg focus:outline-none ${
+            className={`w-8 h-8 md:w-12 md:h-12 text-center text-lg md:text-xl border-2 rounded-lg focus:outline-none ${
               isOtpError
                 ? "border-red-500 focus:border-red-500 shake"
                 : "border-gray-300 focus:border-lime-500"
