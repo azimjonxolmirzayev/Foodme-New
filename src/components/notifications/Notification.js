@@ -11,7 +11,7 @@ const Notification = ({ message, onRetry, onDismiss }) => {
       </div>
       <button
         onClick={onRetry}
-        className="bg-lime-500 text-white px-3 py-1 md:px-4 md:py-2 rounded-lg hover:bg-lime-600 transition text-xs md:text-sm"
+        className="bg-green text-white px-3 py-1 md:px-4 md:py-2 rounded-lg hover:bg-lime-600 transition text-xs md:text-sm"
       >
         Qaytadan
       </button>
