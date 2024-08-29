@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import MapComponent from "./MapComponent";
 import Footeradmin from "./Footeradmin";
 import { IoMdCloudUpload } from "react-icons/io";
+import { IoArrowBackCircleOutline } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
 
 function Cafecreate() {
@@ -16,6 +17,10 @@ function Cafecreate() {
 
   const navclick = () => {
     navigate("/");
+  };
+
+  const navigateTo = () => {
+    navigate("/admin");
   };
 
   const handleLogoChange = (event) => {
@@ -55,47 +60,49 @@ function Cafecreate() {
   };
 
   return (
-    <div className="min-h-screen dark:bg-dark bg-grey p-8">
-      <div className="max-w-4xl mx-auto text-black dark:text-white bg-white dark:bg-dark p-8 rounded-lg dark:shadow-none shadow-lg">
+    <div className="min-h-screen dark:bg-dark bg-gray-100 p-4 md:p-8">
+      <div className="max-w-4xl mx-auto text-black dark:text-white bg-white dark:bg-dark p-4 md:p-8 rounded-lg dark:shadow-none shadow-lg">
         <form>
           <button
             onClick={navclick}
-            className="text-gray-600 dark:text-silver mb-6"
+            type="button"
+            className="text-gray-600 flex items-center justify-center gap-3 dark:text-silver mb-6"
           >
-            &larr; Back
+            <IoArrowBackCircleOutline size="25px" />
+            <p>Back</p>
           </button>
           <h1 className="text-2xl font-bold mb-6">Cafe Create</h1>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="col-span-2">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="lg:col-span-2">
               <h2 className="text-lg font-semibold mb-4">General</h2>
             </div>
 
-            {/* Logo upload section */}
             <div
               onClick={triggerLogoUpload}
               className={`relative border-dashed cursor-pointer rounded-md border-2 flex flex-col-reverse items-center justify-center gap-1 p-6 text-center ${
                 logo
                   ? "border-none shadow-sm shadow-green"
-                  : "border-grey dark:border-grey"
+                  : "border-gray-300 dark:border-grey"
               }`}
               style={{
                 backgroundImage: logo ? `url(${logo})` : "none",
                 backgroundSize: "cover",
-                backgroundPosition: "cover",
+                backgroundPosition: "center",
                 height: "130px",
               }}
             >
               {!logo && (
                 <>
-                  <p className="text-grey dark:text-silver">Logo image</p>
+                  <p className="text-gray-500 dark:text-silver">Logo image</p>
                   <IoMdCloudUpload />
                 </>
               )}
               {logo && (
                 <button
                   onClick={clearLogo}
-                  className="absolute top-2 right-2 text-white hover:text-red"
+                  type="button"
+                  className="absolute top-2 right-2 text-white hover:text-red-500"
                 >
                   <MdDelete size={24} />
                 </button>
@@ -110,18 +117,17 @@ function Cafecreate() {
               />
             </div>
 
-            {/* Background upload section */}
             <div
               onClick={triggerBackgroundUpload}
-              className={`relative border-dashed cursor-pointer  rounded-md border-2 flex flex-col-reverse items-center justify-center gap-1 p-6 text-center ${
+              className={`relative border-dashed cursor-pointer rounded-md border-2 flex flex-col-reverse items-center justify-center gap-1 p-6 text-center ${
                 background
                   ? "border-none shadow-sm shadow-green"
-                  : "border-grey dark:border-gray-500"
+                  : "border-gray-300 dark:border-grey"
               }`}
               style={{
                 backgroundImage: background ? `url(${background})` : "none",
                 backgroundSize: "cover",
-                backgroundPosition: "cover",
+                backgroundPosition: "center",
                 height: "130px",
               }}
             >
@@ -136,7 +142,8 @@ function Cafecreate() {
               {background && (
                 <button
                   onClick={clearBackground}
-                  className="absolute top-2 right-2 text-white hover:text-red"
+                  type="button"
+                  className="absolute top-2 right-2 text-white hover:text-red-500"
                 >
                   <MdDelete size={24} />
                 </button>
@@ -151,33 +158,33 @@ function Cafecreate() {
               />
             </div>
 
-            <div className="md:col-span-1">
+            <div>
               <label className="text-gray-700 dark:text-silver ">Title</label>
               <input
                 required
                 type="text"
-                className="w-full mt-2 p-3 border-b-2 border-black dark:border-white outline-none dark:bg-dark dark:border-gray-700"
+                className="w-full mt-2 p-3 border-b-2 border-black dark:border-white outline-none dark:bg-dark"
                 placeholder="Type here"
               />
             </div>
 
-            <div className="md:col-span-1">
+            <div>
               <label className="text-gray-700 dark:text-silver">Phone</label>
               <input
                 required
                 type="text"
-                className="w-full mt-2 p-3  border-b-2 border-black dark:border-white outline-none dark:bg-dark dark:border-gray-700"
+                className="w-full mt-2 p-3 border-b-2 border-black dark:border-white outline-none dark:bg-dark"
                 placeholder="Type here"
               />
             </div>
 
-            <div className="col-span-2">
+            <div className="lg:col-span-2">
               <label className="text-gray-700 dark:text-silver">
                 Description
               </label>
               <input
                 required
-                className="w-full mt-2 p-3  border-b-2 border-black dark:border-white outline-none dark:bg-dark dark:border-gray-700"
+                className="w-full mt-2 p-3 border-b-2 border-black dark:border-white outline-none dark:bg-dark"
                 placeholder="Type here"
               />
             </div>
@@ -188,7 +195,7 @@ function Cafecreate() {
             <input
               required
               type="text"
-              className="w-full p-3 border-b-2 border-black dark:border-white outline-none dark:bg-dark dark:border-gray-700"
+              className="w-full p-3 border-b-2 border-black dark:border-white outline-none dark:bg-dark"
               placeholder="Type here"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
@@ -198,7 +205,8 @@ function Cafecreate() {
 
           <button
             type="submit"
-            className="bg-green text-white mt-6 p-3 rounded-lg hover:bg-dark"
+            onClick={navigateTo}
+            className="bg-green text-white mt-6 p-3 px-5 font-semibold rounded-lg"
           >
             Submit
           </button>
