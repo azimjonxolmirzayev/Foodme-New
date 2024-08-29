@@ -1,21 +1,62 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/FoodMElogo.png";
-import Footer from "./Footeradmin";
+import MapComponent from "./MapComponent";
 import Footeradmin from "./Footeradmin";
-
-// import { IoMdCloudUpload } from "react-icons/io";
+import { IoMdCloudUpload } from "react-icons/io";
+import { MdDelete } from "react-icons/md";
 
 function Cafecreate() {
+  const [logo, setLogo] = useState(null);
+  const [background, setBackground] = useState(null);
+  const [address, setAddress] = useState("");
   const navigate = useNavigate();
+
+  const logoInputRef = useRef(null);
+  const backgroundInputRef = useRef(null);
 
   const navclick = () => {
     navigate("/");
   };
 
+  const handleLogoChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setLogo(URL.createObjectURL(file));
+    }
+  };
+
+  const handleBackgroundChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setBackground(URL.createObjectURL(file));
+    }
+  };
+
+  const clearLogo = () => {
+    setLogo(null);
+    logoInputRef.current.value = null;
+  };
+
+  const clearBackground = () => {
+    setBackground(null);
+    backgroundInputRef.current.value = null;
+  };
+
+  const triggerLogoUpload = () => {
+    logoInputRef.current.click();
+  };
+
+  const triggerBackgroundUpload = () => {
+    backgroundInputRef.current.click();
+  };
+
+  const handleAddressSelect = (selectedAddress) => {
+    setAddress(selectedAddress);
+  };
+
   return (
     <div className="min-h-screen dark:bg-dark bg-grey p-8">
-      <div className="max-w-4xl mx-auto text-black dark:text-white bg-white dark:bg-dark p-8 rounded-lg shadow-lg">
+      <div className="max-w-4xl mx-auto text-black dark:text-white bg-white dark:bg-dark p-8 rounded-lg dark:shadow-none shadow-lg">
         <form>
           <button
             onClick={navclick}
@@ -30,16 +71,84 @@ function Cafecreate() {
               <h2 className="text-lg font-semibold mb-4">General</h2>
             </div>
 
+            {/* Logo upload section */}
             <div
-              type="image"
-              className="border-dashed cursor-pointer border-2 border-grey dark:border-gray-500 p-6 text-center"
+              onClick={triggerLogoUpload}
+              className={`relative border-dashed cursor-pointer rounded-md border-2 flex flex-col-reverse items-center justify-center gap-1 p-6 text-center ${
+                logo
+                  ? "border-none shadow-sm shadow-green"
+                  : "border-grey dark:border-grey"
+              }`}
+              style={{
+                backgroundImage: logo ? `url(${logo})` : "none",
+                backgroundSize: "cover",
+                backgroundPosition: "cover",
+                height: "130px",
+              }}
             >
-              <p className="text-gray-500 dark:text-silver">Logo image</p>
-              {/* <LiaCloudUploadAltSolid /> */}
+              {!logo && (
+                <>
+                  <p className="text-grey dark:text-silver">Logo image</p>
+                  <IoMdCloudUpload />
+                </>
+              )}
+              {logo && (
+                <button
+                  onClick={clearLogo}
+                  className="absolute top-2 right-2 text-white hover:text-red"
+                >
+                  <MdDelete size={24} />
+                </button>
+              )}
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleLogoChange}
+                className="hidden"
+                ref={logoInputRef}
+                required
+              />
             </div>
 
-            <div className="border-dashed cursor-pointer border-2 border-grey dark:border-gray-500 p-6 text-center">
-              <p className="text-gray-500 dark:text-silver">Background image</p>
+            {/* Background upload section */}
+            <div
+              onClick={triggerBackgroundUpload}
+              className={`relative border-dashed cursor-pointer  rounded-md border-2 flex flex-col-reverse items-center justify-center gap-1 p-6 text-center ${
+                background
+                  ? "border-none shadow-sm shadow-green"
+                  : "border-grey dark:border-gray-500"
+              }`}
+              style={{
+                backgroundImage: background ? `url(${background})` : "none",
+                backgroundSize: "cover",
+                backgroundPosition: "cover",
+                height: "130px",
+              }}
+            >
+              {!background && (
+                <>
+                  <p className="text-gray-500 dark:text-silver">
+                    Background image
+                  </p>
+                  <IoMdCloudUpload />
+                </>
+              )}
+              {background && (
+                <button
+                  onClick={clearBackground}
+                  className="absolute top-2 right-2 text-white hover:text-red"
+                >
+                  <MdDelete size={24} />
+                </button>
+              )}
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleBackgroundChange}
+                className="hidden"
+                ref={backgroundInputRef}
+                required
+              />
             </div>
 
             <div className="md:col-span-1">
@@ -47,7 +156,7 @@ function Cafecreate() {
               <input
                 required
                 type="text"
-                className="w-full mt-2 p-3 border-b-2 border-black outline-none dark:bg-dark dark:border-gray-700"
+                className="w-full mt-2 p-3 border-b-2 border-black dark:border-white outline-none dark:bg-dark dark:border-gray-700"
                 placeholder="Type here"
               />
             </div>
@@ -57,7 +166,7 @@ function Cafecreate() {
               <input
                 required
                 type="text"
-                className="w-full mt-2 p-3  border-b-2 border-black outline-none dark:bg-dark dark:border-gray-700"
+                className="w-full mt-2 p-3  border-b-2 border-black dark:border-white outline-none dark:bg-dark dark:border-gray-700"
                 placeholder="Type here"
               />
             </div>
@@ -68,7 +177,7 @@ function Cafecreate() {
               </label>
               <input
                 required
-                className="w-full mt-2 p-3  border-b-2 border-black outline-none dark:bg-dark dark:border-gray-700"
+                className="w-full mt-2 p-3  border-b-2 border-black dark:border-white outline-none dark:bg-dark dark:border-gray-700"
                 placeholder="Type here"
               />
             </div>
@@ -79,49 +188,22 @@ function Cafecreate() {
             <input
               required
               type="text"
-              className="w-full mt-2 p-3  border-b-2 border-black outline-none dark:bg-dark dark:border-gray-700"
+              className="w-full p-3 border-b-2 border-black dark:border-white outline-none dark:bg-dark dark:border-gray-700"
               placeholder="Type here"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
             />
+            <MapComponent onAddressSelect={handleAddressSelect} />
           </div>
 
-          <div className="mt-8">
-            <div className="h-64 bg-grey dark:bg-gray-800 flex items-center justify-center">
-              <p className="text-gray-500 dark:text-silver">Map Placeholder</p>
-            </div>
-          </div>
-
-          <div className="mt-8 text-center">
-            <button
-              type="submit"
-              className="bg-green text-black dark:text-dark py-3 px-8 rounded-lg shadow-lg hover:bg-green200 dark:hover:bg-green"
-            >
-              Submit
-            </button>
-          </div>
+          <button
+            type="submit"
+            className="bg-green text-white mt-6 p-3 rounded-lg hover:bg-dark"
+          >
+            Submit
+          </button>
         </form>
       </div>
-      <Footeradmin />
-
-      {/* <footer className="bg-black text-white rounded-md dark:bg-dark dark:text-silver mt-12 p-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex justify-between items-center">
-            <img className="w-32" src={logo} />
-            <div className="space-x-4">
-              <a href="/" className="hover:underline">
-                About Foodme
-              </a>
-              <a href="#" className="hover:underline">
-                Careers
-              </a>
-              <a href="#" className="hover:underline">
-                Blog
-              </a>
-            </div>
-          </div>
-          <p className="mt-4">457856 Andijon street. Namangan, 369495 UZ</p>
-          <p className="mt-2">+998 (94) 000-0000, (91) 000-2255</p>
-        </div>
-      </footer> */}
     </div>
   );
 }
