@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import logo from "../assets/FoodMElogo.png";
+import logo from "../../assets/brand/brand-01.png";
 
 export default function Footer() {
   const { t, i18n } = useTranslation();

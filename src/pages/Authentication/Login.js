@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import Notification from "../notifications/Notification";
-import logo from "../../assets/FoodMElogo.png";
+import Notification from "../UIElements/Notification";
+import logo from "../../assets/brand/brand-01.png";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 

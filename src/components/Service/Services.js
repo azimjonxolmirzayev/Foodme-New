@@ -1,9 +1,9 @@
 import { useInView } from "react-intersection-observer";
 import ServiceItem from "./ServiceItem";
-import searchengine from "../assets/searchengine.png";
-import analytics from "../assets/alanytics.png";
-import mijoz from "../assets/mijoz.png";
-import tajriba from "../assets/tajriba.png";
+import searchengine from "../../assets/cards/cards-04.png";
+import analytics from "../../assets/cards/cards-01.png";
+import mijoz from "../../assets/cards/cards-02.png";
+import tajriba from "../../assets/cards/cards-03.png";
 import { useTranslation } from "react-i18next";
 
 function Services() {

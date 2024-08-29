@@ -1,7 +1,7 @@
 import { useInView } from "react-intersection-observer";
 import { useTranslation } from "react-i18next";
 
-function Xizmatlar() {
+function Works() {
   const { ref: serviceRef } = useInView({
     triggerOnce: false,
     threshold: 0.1,
@@ -47,4 +47,4 @@ function Xizmatlar() {
   );
 }
 
-export default Xizmatlar;
+export default Works;

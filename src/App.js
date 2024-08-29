@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Cafecreate from "./components/Cafecreate";
-import Login from "./components/auth/Login";
-import "./components/i18next";
+import Cafecreate from "./pages/Authentication/Cafecreate";
+import Login from "./pages/Authentication/Login";
+import "./components/I18/i18next";
 import ProtectedRoute from "./components/Protect/ProtectedRoute";
-import Home from "./home/Home";
-import Admin from "./home/Admin";
+import Home from "./pages/Home";
+import Admin from "./pages/Dashboard/Admin";
 
 function App() {
   return (

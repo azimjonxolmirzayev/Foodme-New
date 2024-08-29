@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import MapComponent from "./MapComponent";
-import Footeradmin from "./Footeradmin";
+import MapComponent from "../../components/Maps/MapComponent";
+import Footeradmin from "../../components/Footer/Footeradmin";
 import { IoMdCloudUpload } from "react-icons/io";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";

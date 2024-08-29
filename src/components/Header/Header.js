@@ -1,6 +1,6 @@
-import Button from "./Button";
-import DayImage from "../assets/order.jpg";
-import NightImage from "../assets/orderblack.png";
+import Button from "../../pages/UIElements/Button";
+import DayImage from "../../assets/header/header-01.jpg";
+import NightImage from "../../assets/header/header-02.png";
 import { useEffect, useState, useRef } from "react";
 import "tailwindcss/tailwind.css";
 import { useTranslation } from "react-i18next";
