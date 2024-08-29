@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from "react";
 import "tailwindcss/tailwind.css";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 function Header() {
   const navigate = useNavigate();
@@ -41,7 +42,13 @@ function Header() {
   }, []);
 
   const navclick = () => {
-    navigate("/login");
+    const csrfToken = Cookies.get("csrf_token");
+
+    if (csrfToken) {
+      navigate("/create-cafe");
+    } else {
+      navigate("/login");
+    }
   };
 
   return (

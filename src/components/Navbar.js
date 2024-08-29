@@ -3,6 +3,7 @@ import Button from "./Button";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/FoodMElogo.png";
+import Cookies from "js-cookie";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -14,7 +15,13 @@ function Navbar() {
   };
 
   const navclick = () => {
-    navigate("/login");
+    const csrfToken = Cookies.get("csrf_token");
+
+    if (csrfToken) {
+      navigate("/create-cafe");
+    } else {
+      navigate("/login");
+    }
   };
 
   return (
