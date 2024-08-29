@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import logo from "../assets/FoodMElogo.png";
 
 export default function Footer() {
   const { t, i18n } = useTranslation();
@@ -23,7 +24,7 @@ export default function Footer() {
               className="flex items-center space-x-3 rtl:space-x-reverse"
             >
               <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                FoodMe
+                <img className="w-32" src={logo} />
               </span>
             </a>
           </a>
