@@ -39,3 +39,13 @@ body {
     @apply bg-black text-white;
   }
 }
+
+/* Tailwind CSS-da scrollni ko'rinishdan olib tashlash */
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari va Opera uchun */
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* Internet Explorer va Edge uchun */
+  scrollbar-width: none; /* Firefox uchun */
+}

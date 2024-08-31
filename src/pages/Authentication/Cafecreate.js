@@ -20,7 +20,7 @@ function Cafecreate() {
   };
 
   const navigateTo = () => {
-    navigate("/admin");
+    navigate("/dashboard");
   };
 
   const handleLogoChange = (event) => {

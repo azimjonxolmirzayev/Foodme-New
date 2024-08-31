@@ -19,12 +19,12 @@ const DropdownUser = () => {
       >
         <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            Thomas Anree
+            Azimjon Xolmirzayev
           </span>
-          <span className="block text-xs">UX Designer</span>
+          <span className="block text-xs">Manager</span>
         </span>
 
-        <span className="h-12 w-12 rounded-full">
+        <span className="h-12 w-12 overflow-hidden rounded-full">
           <img src={UserOne} alt="User" />
         </span>
 
@@ -72,7 +72,7 @@ const DropdownUser = () => {
             </li>
             <li>
               <Link
-                to="#"
+                to="/settings"
                 className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
               >
                 <svg
@@ -90,7 +90,7 @@ const DropdownUser = () => {
             </li>
             <li>
               <Link
-                to="#"
+                to="/"
                 className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
               >
                 <svg

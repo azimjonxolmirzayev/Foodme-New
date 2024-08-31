@@ -16,7 +16,6 @@ import Buttons from "../../pages/UIElements/Buttons";
 import DefaultLayout from "../../Layout/DefaultLayout";
 import Cafecreate from "../../pages/Authentication/Cafecreate";
 import Login from "../Authentication/Login";
-import ProtectedRoute from "../../components/Protect/ProtectedRoute";
 import Home from "../../pages/Home";
 import Admin from "../../pages/Dashboard/Admin";
 
@@ -44,14 +43,8 @@ function App() {
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/chart" element={<Chart />} />
 
-        {/* Protected Routes */}
-        <Route
-          path="/create-cafe"
-          element={<ProtectedRoute element={Cafecreate} />}
-        />
-
         {/* Admin Routes */}
-        <Route path="/admin/*" element={<ProtectedRoute element={Admin} />}>
+        <Route path="/admin/*" element={<Admin />}>
           <Route
             path="dashboard"
             element={

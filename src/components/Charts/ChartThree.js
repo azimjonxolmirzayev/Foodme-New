@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactApexChart from "react-apexcharts";
 
 const options = {
@@ -48,15 +48,13 @@ const ChartThree = () => {
     series: [65, 34, 12, 56],
   });
 
-  const handleReset = () => {
+  useEffect(() => {
+    // `handleReset` chaqirilishi kerak bo'lsa, bu yerda chaqirish mumkin
     setState((prevState) => ({
       ...prevState,
       series: [65, 34, 12, 56],
     }));
-  };
-
-  // Note: handleReset is defined but not used; remove if unnecessary
-  handleReset();
+  }, []); // Bu faqat bir marta chaqiriladi
 
   return (
     <div className="sm:px-7.5 col-span-12 rounded-sm border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-5">

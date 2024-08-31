@@ -69,7 +69,7 @@ const DropdownMessage = () => {
               <li>
                 <Link
                   className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-                  to="/messages"
+                  to="/dashboard"
                 >
                   <div className="h-12.5 w-12.5 rounded-full">
                     <img src={UserTwo} alt="User" />
@@ -87,7 +87,7 @@ const DropdownMessage = () => {
               <li>
                 <Link
                   className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-                  to="/messages"
+                  to="/dashboard"
                 >
                   <div className="h-12.5 w-12.5 rounded-full">
                     <img src={UserOne} alt="User" />
@@ -105,7 +105,7 @@ const DropdownMessage = () => {
               <li>
                 <Link
                   className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-                  to="/messages"
+                  to="/dashboard"
                 >
                   <div className="h-12.5 w-12.5 rounded-full">
                     <img src={UserThree} alt="User" />
@@ -123,7 +123,7 @@ const DropdownMessage = () => {
               <li>
                 <Link
                   className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-                  to="/messages"
+                  to="/dashboard"
                 >
                   <div className="h-12.5 w-12.5 rounded-full">
                     <img src={UserFour} alt="User" />
@@ -141,7 +141,7 @@ const DropdownMessage = () => {
               <li>
                 <Link
                   className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-                  to="/messages"
+                  to="/dashboard"
                 >
                   <div className="h-12.5 w-12.5 rounded-full">
                     <img src={UserTwo} alt="User" />

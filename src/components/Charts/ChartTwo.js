@@ -59,7 +59,7 @@ const options = {
 };
 
 const ChartTwo = () => {
-  const [state, setState] = useState({
+  const [state] = useState({
     series: [
       {
         name: "Sales",
@@ -72,15 +72,6 @@ const ChartTwo = () => {
     ],
   });
 
-  const handleReset = () => {
-    setState((prevState) => ({
-      ...prevState,
-    }));
-  };
-
-  // Note: handleReset is defined but not used; remove if unnecessary
-  handleReset();
-
   return (
     <div className="col-span-12 rounded-sm border border-stroke bg-white p-7.5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-4">
       <div className="mb-4 justify-between gap-4 sm:flex">
@@ -92,14 +83,14 @@ const ChartTwo = () => {
         <div>
           <div className="relative z-20 inline-block">
             <select
-              name="#"
-              id="#"
+              name="timeframe"
+              id="timeframe"
               className="relative z-20 inline-flex appearance-none bg-transparent py-1 pl-3 pr-8 text-sm font-medium outline-none"
             >
-              <option value="" className="dark:bg-boxdark">
+              <option value="this-week" className="dark:bg-boxdark">
                 This Week
               </option>
-              <option value="" className="dark:bg-boxdark">
+              <option value="last-week" className="dark:bg-boxdark">
                 Last Week
               </option>
             </select>

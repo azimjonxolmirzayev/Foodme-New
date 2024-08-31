@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReactApexChart from "react-apexcharts";
-import { ApexOptions } from "apexcharts"; // You can keep this import if you need it for options definition
+// Importing ApexOptions is optional unless you need type-checking for options
+// import { ApexOptions } from "apexcharts";
 
 const options = {
   legend: {
@@ -123,13 +124,6 @@ const ChartOne = () => {
       },
     ],
   });
-
-  const handleReset = () => {
-    setState((prevState) => ({
-      ...prevState,
-    }));
-  };
-  handleReset();
 
   return (
     <div className="col-span-12 rounded-sm border border-stroke bg-white px-5 pt-7.5 pb-5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-8">
