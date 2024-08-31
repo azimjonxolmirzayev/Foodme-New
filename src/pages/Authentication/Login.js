@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import Notification from "../UIElements/Notification";
-import logo from "../../assets/brand/brand-01.png";
+import logo from "../../assets/logo/logo-01.png";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
@@ -133,10 +133,10 @@ function Login() {
           <img src={logo} className="w-32 md:w-48 lg:w-60" alt="FoodME Logo" />
         </div>
       </div>
-      <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-center mb-4">
+      <h1 className="text-xl md:text-2xl lg:text-3xl text-black font-bold text-center mb-4">
         Kodni Kiriting
       </h1>
-      <p className="text-sm md:text-base lg:text-lg text-center mb-8">
+      <p className="text-sm md:text-base  text-black lg:text-lg text-center mb-8">
         <a
           href="tg://resolve?domain=foodme_robot"
           className="text-green leading-6"
@@ -157,7 +157,7 @@ function Login() {
             onKeyDown={(e) => handleKeyDown(e, index)}
             onPaste={handlePaste}
             ref={(el) => (inputRefs.current[index] = el)}
-            className={`w-8 h-8 md:w-12 md:h-12 text-center dark:text-black text-lg md:text-xl border-2 rounded-lg focus:outline-none ${
+            className={`w-8 h-8 md:w-12 md:h-12 text-center text-black dark:text-black text-lg md:text-xl border-2 rounded-lg focus:outline-none ${
               isOtpError
                 ? "border-red focus:border-red shake"
                 : "border-grey focus:border-green"

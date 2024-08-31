@@ -6,6 +6,7 @@ import "./components/I18/i18next";
 import ProtectedRoute from "./components/Protect/ProtectedRoute";
 import Home from "./pages/Home";
 import Admin from "./pages/Dashboard/Admin";
+import Calendar from "./pages/Calendar";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           path="/create-cafe"
           element={<ProtectedRoute element={Cafecreate} />}
         />
+        <Route path="/calendar" element={Calendar} />
         <Route path="/admin" element={<ProtectedRoute element={Admin} />} />
         <Route path="*" element={<h1>404 - Page Not Found</h1>} />
       </Routes>

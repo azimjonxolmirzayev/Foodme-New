@@ -1,4 +1,4 @@
-import logo from "../../assets/brand/brand-01.png";
+import logo from "../../assets/logo/logo-01.png";
 
 export default function Footeradmin() {
   return (

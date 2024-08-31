@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "../../pages/UIElements/Button";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/brand/brand-01.png";
+import logo from "../../assets/logo/logo-01.png";
 import Cookies from "js-cookie";
 
 function Navbar() {
