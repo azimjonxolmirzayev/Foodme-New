@@ -94,13 +94,13 @@ const Profile = () => {
             <div className="mx-auto mt-4.5 mb-5.5 grid max-w-94 grid-cols-3 rounded-md border border-stroke py-2.5 shadow-1 dark:border-strokedark dark:bg-[#37404F]">
               <div className="flex flex-col items-center justify-center gap-1 border-r border-stroke px-4 dark:border-strokedark xsm:flex-row">
                 <span className="font-semibold text-black dark:text-white">
-                  150
+                  150+
                 </span>
                 <span className="text-sm">Daily users</span>
               </div>
               <div className="flex flex-col items-center justify-center gap-1 border-r border-stroke px-4 dark:border-strokedark xsm:flex-row">
                 <span className="font-semibold text-black dark:text-white">
-                  250
+                  250+
                 </span>
                 <span className="text-sm">Followers</span>
               </div>
@@ -108,7 +108,7 @@ const Profile = () => {
                 <span className="font-semibold text-black dark:text-white">
                   50+
                 </span>
-                <span className="text-sm">Food</span>
+                <span className="text-sm">Products</span>
               </div>
             </div>
 

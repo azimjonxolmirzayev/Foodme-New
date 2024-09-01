@@ -1,18 +1,19 @@
-import { useState } from "react";
+import { useState, useId } from "react";
 
 const CheckboxFour = () => {
   const [isChecked, setIsChecked] = useState(false);
+  const id = useId(); // Generate a unique ID
 
   return (
     <div>
       <label
-        htmlFor="checkboxLabelFour"
+        htmlFor={id}
         className="flex cursor-pointer select-none items-center"
       >
         <div className="relative">
           <input
             type="checkbox"
-            id="checkboxLabelFour"
+            id={id}
             className="sr-only"
             onChange={() => {
               setIsChecked(!isChecked);
@@ -27,12 +28,9 @@ const CheckboxFour = () => {
               className={`h-2.5 w-2.5 rounded-full bg-transparent ${
                 isChecked ? "!bg-primary" : ""
               }`}
-            >
-              {" "}
-            </span>
+            ></span>
           </div>
         </div>
-        Checkbox Text
       </label>
     </div>
   );

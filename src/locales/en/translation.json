@@ -86,5 +86,8 @@
   "description": "Here you can add additional information for your guests, such as taxes, service charges, restaurant working hours, contacts, general QR code menu information, and more.",
   "mainMenuButton": "Main Menu",
   "searchPlaceholder": "Search...",
-  "searchButton": "Search"
+  "searchButton": "Search",
+  "no-page": "Page not found",
+  "sorry": "Sorry, we couldn’t find the page you’re looking for.",
+  "back": "Go back home"
 }

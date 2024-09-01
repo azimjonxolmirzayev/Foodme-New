@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
 
 @keyframes shake {
   0% {
@@ -32,13 +33,14 @@
 
 body {
   @apply bg-white text-black;
+  font-family: "Space Grotesk", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   body {
     @apply bg-black text-white;
   }
-}
+} */
 
 /* Tailwind CSS-da scrollni ko'rinishdan olib tashlash */
 .no-scrollbar::-webkit-scrollbar {
@@ -48,4 +50,75 @@ body {
 .no-scrollbar {
   -ms-overflow-style: none; /* Internet Explorer va Edge uchun */
   scrollbar-width: none; /* Firefox uchun */
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.bg-animation {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-animation div {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  animation: float 5s ease-in-out infinite;
+}
+
+.bg-animation .bg-1 {
+  top: 10%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.bg-animation .bg-2 {
+  top: 40%;
+  left: 50%;
+  animation-delay: 2s;
+}
+
+.bg-animation .bg-3 {
+  top: 75%;
+  left: 80%;
+  animation-delay: 4s;
+}
+.headeradmin {
+  transition: transform 0.3s ease;
+  transform: translateY(0); /* Initial position when collapsed */
+}
+
+.headeradmin.expanded {
+  transform: translateY(-100px); /* Adjust this value to control the movement */
+}
+
+.slide-in-enter {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+.slide-in-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 300ms ease-in-out;
+}
+.slide-in-exit {
+  transform: translateY(0);
+  opacity: 1;
+}
+.slide-in-exit-active {
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: all 300ms ease-in-out;
 }

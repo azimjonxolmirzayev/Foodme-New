@@ -4,6 +4,7 @@ import Notification from "../UIElements/Notification";
 import logo from "../../assets/logo/logo-01.png";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { BASE_URL } from "../../config/config";
 
 function Login() {
   const [otp_code, setOtp] = useState("");
@@ -13,6 +14,9 @@ function Login() {
   const [isOtpError, setIsOtpError] = useState(false);
   const inputRefs = useRef([]);
   const navigate = useNavigate();
+
+  const loginEndpoint = "login-api/";
+  const fullUrl = `${BASE_URL}${loginEndpoint}`;
 
   useEffect(() => {
     if (otp_code.length === 6) {
@@ -65,7 +69,7 @@ function Login() {
       console.log("Sent OTP:", otp_code);
 
       const response = await axios.post(
-        "https://ikromjon.pythonanywhere.com/api/login-api/",
+        `${fullUrl}`,
         { otp_code: otp_code },
         { headers: { "Content-Type": "application/json" } }
       );

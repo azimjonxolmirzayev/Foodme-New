@@ -46,6 +46,7 @@ module.exports = {
     },
     extend: {
       colors: {
+        bordergray600: "#6c757d",
         borderopacity: "#6a6a6b",
         purple: "#3f3cbb",
         green: "#B9FF66",
@@ -283,6 +284,24 @@ module.exports = {
           "0%, 100%": { transform: "rotate(360deg)" },
           "50%": { transform: "rotate(0deg)" },
         },
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        slideIn: {
+          "0%": { transform: "translateY(-30px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+        bounce: {
+          "0%, 20%, 50%, 80%, 100%": { transform: "translateY(0)" },
+          "40%": { transform: "translateY(-30px)" },
+          "60%": { transform: "translateY(-15px)" },
+        },
+        hover: {
+          "0%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.05)" },
+          "100%": { transform: "scale(1)" },
+        },
       },
       animation: {
         "ping-once": "ping 5s cubic-bezier(0, 0, 0.2, 1)",
@@ -290,6 +309,11 @@ module.exports = {
         "spin-1.5": "spin 1.5s linear infinite",
         "spin-2": "spin 2s linear infinite",
         "spin-3": "spin 3s linear infinite",
+        fadeIn: "fadeIn 1s ease-out",
+        slideIn: "slideIn 1s ease-out",
+        pulse: "bounce 1s infinite",
+        bounce: "bounce 1s infinite",
+        hover: "hover 1s ease-in-out infinite",
       },
     },
   },

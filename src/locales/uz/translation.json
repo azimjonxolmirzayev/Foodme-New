@@ -89,5 +89,8 @@
   "description": "Bu yerda siz mehmonlaringiz uchun soliqlar, xizmat toʻlovlari, restoran ish vaqti, kontaktlar, umumiy QR kod menyusi maʼlumotlari va hokazolar kabi qoʻshimcha maʼlumotlarni qoʻshishingiz mumkin.",
   "mainMenuButton": "Asosiy menyu",
   "searchPlaceholder": "Qidiring...",
-  "searchButton": "Qidirish"
+  "searchButton": "Qidirish",
+  "no-page": "Sahifa topilmadi",
+  "sorry": "Kechirasiz, siz qidirayotgan sahifani topa olmadik.",
+  "back": "Asosiy sahifaga qayting"
 }
