@@ -106,7 +106,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                   }`}
                 >
                   All Products
-                  <IoMdAdd size={"22px"} />
                 </NavLink>
               </li>
             </ul>
