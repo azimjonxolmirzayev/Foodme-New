@@ -38,7 +38,7 @@ function Navbar() {
           <button
             onClick={toggleMenu}
             type="button"
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm  text-black rounded-lg md:hidden hover:bg-orange-400 dark:text-white hover:dark:text-zinc-600"
+            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm  text-black rounded-lg md:hidden hover: dark:text-white "
             aria-controls="navbar-cta"
             aria-expanded={isMenuOpen}
           >
@@ -64,18 +64,24 @@ function Navbar() {
             isMenuOpen ? "block" : "hidden"
           } w-full md:flex md:w-auto md:order-1`}
         >
-          <ul className="flex flex-col font-medium font-['SpaceGrotesk'] p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:bg-orange-400 md:dark:bg-orange-400 dark:border-orange-400">
+          <ul className="flex flex-col font-medium font-['SpaceGrotesk'] p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
             <li>
-              <a href="#afzalliklar">{t("adventages")}</a>
+              <a className="hover:text-green" href="#afzalliklar">
+                {t("adventages")}
+              </a>
             </li>
             <li>
-              <a href="#xizmatlar">{t("service")}</a>
+              <a className="hover:text-green" href="#xizmatlar">
+                {t("service")}
+              </a>
             </li>
             <li>
-              <a href="#price">{t("price")}</a>
+              <a className="hover:text-green" href="#price">
+                {t("price")}
+              </a>
             </li>
             <li>
-              <a href="#bepulsinov">
+              <a className="hover:text-green" href="#bepulsinov">
                 <button>{t("freetrial")}</button>
               </a>
             </li>
