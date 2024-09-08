@@ -15,7 +15,7 @@ function Login() {
   const inputRefs = useRef([]);
   const navigate = useNavigate();
 
-  const loginEndpoint = "login-api/";
+  const loginEndpoint = "login/";
   const fullUrl = `${BASE_URL}${loginEndpoint}`;
 
   useEffect(() => {
@@ -66,8 +66,6 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      console.log("Sent OTP:", otp_code);
-
       const response = await axios.post(
         `${fullUrl}`,
         { otp_code: otp_code },
@@ -76,14 +74,24 @@ function Login() {
 
       if (response.status === 200) {
         Cookies.set("csrf_token", response.data.csrf_token, { expires: 7 });
+        let user_data = response.data.user;
+
+        Cookies.set("user_data", JSON.stringify(user_data), { expires: 7 });
 
         setMessage("Login muvaffaqiyatli amalga oshirildi!");
         setNotificationMessage("");
         setShowNotification(false);
         setIsOtpError(false);
-        console.log(response.data[0]);
+        console.log(response.data);
         console.log(response.status);
-        navigate("/create-cafe");
+
+        let has_cafe = response.data.user["has_cafe"];
+
+        if (has_cafe == true) {
+          navigate("/admin");
+        } else {
+          navigate("/create-cafe");
+        }
       } else {
         console.log(response.data);
         console.log(response.status);
@@ -142,10 +150,10 @@ function Login() {
       </h1>
       <p className="text-sm md:text-base  text-black lg:text-lg text-center mb-8">
         <a
-          href="tg://resolve?domain=foodme_robot"
+          href="tg://resolve?domain=wikiiichatbot"
           className="text-green leading-6"
         >
-          @foodme_robot
+          @https://t.me/wikiiichatbot
         </a>{" "}
         telegram botiga kiring va 1 daqiqalik <br /> kodingizni oling.
       </p>

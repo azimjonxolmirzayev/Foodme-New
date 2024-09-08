@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ClickOutside from "../ClickOutside";
 import UserOne from "../../assets/user/user-01.jpg";
+import Cookies from "js-cookie";
 
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleDropdown = () => setDropdownOpen((prev) => !prev);
+  const user_data = JSON.parse(Cookies.get("user_data"));
 
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
@@ -19,9 +21,8 @@ const DropdownUser = () => {
       >
         <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            Azimjon Xolmirzayev
+            {user_data["full_name"]}
           </span>
-          <span className="block text-xs">Manager</span>
         </span>
 
         <span className="h-12 w-12 overflow-hidden rounded-full">
@@ -44,7 +45,6 @@ const DropdownUser = () => {
         </svg>
       </Link>
 
-      {/* Dropdown Menu */}
       {dropdownOpen && (
         <div
           id="user-dropdown"

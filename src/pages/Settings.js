@@ -1,7 +1,14 @@
 import Breadcrumb from "../components/Breadcrumbs/Breadcrumb";
 import userThree from "../assets/logo/logo-01.png";
+import Cookies from "js-cookie";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 const Settings = () => {
+  const [error, setError] = useState(null);
+  const user_data = JSON.parse(Cookies.get("user_data"));
+  const cafe_data = JSON.parse(Cookies.get("cafe_data"));
+
   return (
     <>
       <div className="mx-auto max-w-270">
@@ -57,6 +64,7 @@ const Settings = () => {
                           name="fullName"
                           id="fullName"
                           placeholder="FoodMe"
+                          value={cafe_data["name"]}
                         />
                       </div>
                     </div>
@@ -74,12 +82,13 @@ const Settings = () => {
                         name="phoneNumber"
                         id="phoneNumber"
                         placeholder="+998 91 000 0000"
+                        value={cafe_data["phone_number"]}
                       />
                     </div>
                   </div>
 
-                  <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
-                    <div className="w-full sm:w-1/2">
+                  <div className="mb-5.5 flex flex-col w-full gap-5.5 sm:flex-row">
+                    <div className="w-full">
                       <label
                         className="mb-3 block text-sm font-medium text-black dark:text-white"
                         htmlFor="fullName"
@@ -117,25 +126,10 @@ const Settings = () => {
                           type="text"
                           name="fullName"
                           id="fullName"
-                          placeholder="Колледж экономики, Andijon ko'chasi, Uchkurgan, Uchkurgan District, Provinz Namangan, 160900, Usbekistan"
+                          placeholder="Andijon ko'chasi, Uchkurgan, Uchkurgan District, Provinz Namangan, 160900, Usbekistan"
+                          value={cafe_data["location"]}
                         />
                       </div>
-                    </div>
-
-                    <div className="w-full sm:w-1/2">
-                      <label
-                        className="mb-3 block text-sm font-medium text-black dark:text-white"
-                        htmlFor="phoneNumber"
-                      >
-                        Latitude & Longitude
-                      </label>
-                      <input
-                        className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-                        type="text"
-                        name="mapl"
-                        id="map"
-                        placeholder="Latitude: -29.87721,  Longitude: -156.51380"
-                      />
                     </div>
                   </div>
 
@@ -183,6 +177,7 @@ const Settings = () => {
                         name="bio"
                         id="bio"
                         rows={6}
+                        value={cafe_data["name"]}
                         placeholder="Write your restaraunt description here"
                       ></textarea>
                     </div>

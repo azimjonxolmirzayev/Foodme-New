@@ -1,15 +1,21 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import MapComponent from "../../components/Maps/MapComponent";
-import Footeradmin from "../../components/Footer/Footeradmin";
 import { IoMdCloudUpload } from "react-icons/io";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
+import Cookies from "js-cookie";
+import { BASE_URL } from "../../config/config";
 
 function Cafecreate() {
   const [logo, setLogo] = useState(null);
   const [background, setBackground] = useState(null);
+  const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const logoInputRef = useRef(null);
@@ -19,7 +25,7 @@ function Cafecreate() {
     navigate("/");
   };
 
-  const navigateTo = () => {
+  const navigateToDashboard = () => {
     navigate("/admin/dashboard");
   };
 
@@ -59,10 +65,47 @@ function Cafecreate() {
     setAddress(selectedAddress);
   };
 
+  const loginEndpoint = "cafes/";
+  const fullUrl = `${BASE_URL}${loginEndpoint}`;
+
+  const user_data = JSON.parse(Cookies.get("user_data"));
+  const csrfToken = Cookies.get("csrf_token"); // Fetch CSRF token from cookies
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("location", address);
+    formData.append("description", description);
+    formData.append("phone_number", phoneNumber);
+    formData.append("owner_id", user_data["id"]);
+    if (logo) formData.append("logo", logoInputRef.current.files[0]);
+    if (background)
+      formData.append("bg_image", backgroundInputRef.current.files[0]);
+
+    try {
+      const response = await axios.post(fullUrl, formData, {
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": csrfToken, // Include CSRF token in headers
+        },
+      });
+      console.log("Cafe created successfully", response.data);
+      navigateToDashboard();
+    } catch (error) {
+      console.error(
+        "Error creating cafe",
+        error.response ? error.response.data : error.message
+      );
+      setError("There was an issue creating the cafe. Please try again.");
+    }
+  };
+
   return (
     <div className="min-h-screen dark:bg-dark bg-gray-100 p-4 md:p-8">
       <div className="max-w-4xl mx-auto text-black dark:text-white bg-white dark:bg-dark p-4 md:p-8 rounded-lg dark:shadow-none shadow-lg">
-        <form>
+        <form onSubmit={handleSubmit}>
           <button
             onClick={navclick}
             type="button"
@@ -78,6 +121,7 @@ function Cafecreate() {
               <h2 className="text-lg font-semibold mb-4">General</h2>
             </div>
 
+            {/* Logo Upload */}
             <div
               onClick={triggerLogoUpload}
               className={`relative border-dashed cursor-pointer rounded-md border-2 flex flex-col-reverse items-center justify-center gap-1 p-6 text-center ${
@@ -117,6 +161,7 @@ function Cafecreate() {
               />
             </div>
 
+            {/* Background Upload */}
             <div
               onClick={triggerBackgroundUpload}
               className={`relative border-dashed cursor-pointer rounded-md border-2 flex flex-col-reverse items-center justify-center gap-1 p-6 text-center ${
@@ -158,16 +203,20 @@ function Cafecreate() {
               />
             </div>
 
+            {/* Name Input */}
             <div>
-              <label className="text-gray-700 dark:text-silver ">Title</label>
+              <label className="text-gray-700 dark:text-silver">Name</label>
               <input
                 required
                 type="text"
                 className="w-full mt-2 p-3 border-b-2 border-black dark:border-white outline-none dark:bg-dark"
                 placeholder="Type here"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
 
+            {/* Phone Number Input */}
             <div>
               <label className="text-gray-700 dark:text-silver">Phone</label>
               <input
@@ -175,9 +224,12 @@ function Cafecreate() {
                 type="text"
                 className="w-full mt-2 p-3 border-b-2 border-black dark:border-white outline-none dark:bg-dark"
                 placeholder="Type here"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
               />
             </div>
 
+            {/* Description Input */}
             <div className="lg:col-span-2">
               <label className="text-gray-700 dark:text-silver">
                 Description
@@ -186,10 +238,13 @@ function Cafecreate() {
                 required
                 className="w-full mt-2 p-3 border-b-2 border-black dark:border-white outline-none dark:bg-dark"
                 placeholder="Type here"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
               />
             </div>
           </div>
 
+          {/* Address Section */}
           <div className="mt-8">
             <h2 className="text-lg font-semibold mb-4">Address</h2>
             <input
@@ -203,12 +258,13 @@ function Cafecreate() {
             <MapComponent onAddressSelect={handleAddressSelect} />
           </div>
 
+          {error && <p className="text-red-500 mt-4">{error}</p>}
+
           <button
             type="submit"
-            onClick={navigateTo}
-            className="bg-green text-white mt-6 p-3 px-5 font-semibold rounded-lg"
+            className="bg-green text-white px-6 py-3 mt-8 w-full rounded-lg font-semibold"
           >
-            Submit
+            Create Cafe
           </button>
         </form>
       </div>

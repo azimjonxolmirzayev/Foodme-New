@@ -1,12 +1,13 @@
 // src/components/Header.js
-import React from "react";
-import { Link } from "react-router-dom";
-import DropdownMessage from "./DropdownMessage";
+import React, { useEffect, useState } from "react";
 import DropdownNotification from "./DropdownNotification";
 import DropdownUser from "./DropdownUser";
 import DarkModeSwitcher from "./DarkModeSwitcher";
 
+
 const HeaderAdmin = (props) => {
+  
+
   return (
     <header className="sticky headeradmin top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none">
       <div className="flex flex-grow items-center justify-between px-4 py-4 shadow-2 md:px-6 2xl:px-11">
