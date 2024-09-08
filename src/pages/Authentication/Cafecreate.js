@@ -69,7 +69,7 @@ function Cafecreate() {
   const fullUrl = `${BASE_URL}${loginEndpoint}`;
 
   const user_data = JSON.parse(Cookies.get("user_data"));
-  const csrfToken = Cookies.get("csrf_token"); // Fetch CSRF token from cookies
+  const csrfToken = Cookies.get("csrf_token");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -88,8 +88,9 @@ function Cafecreate() {
       const response = await axios.post(fullUrl, formData, {
         headers: {
           "Content-Type": "application/json",
-          "X-CSRFToken": csrfToken, // Include CSRF token in headers
+          "X-CSRFToken": csrfToken,
         },
+        withCredentials: true,
       });
       console.log("Cafe created successfully", response.data);
       navigateToDashboard();
@@ -121,7 +122,6 @@ function Cafecreate() {
               <h2 className="text-lg font-semibold mb-4">General</h2>
             </div>
 
-            {/* Logo Upload */}
             <div
               onClick={triggerLogoUpload}
               className={`relative border-dashed cursor-pointer rounded-md border-2 flex flex-col-reverse items-center justify-center gap-1 p-6 text-center ${
@@ -161,7 +161,6 @@ function Cafecreate() {
               />
             </div>
 
-            {/* Background Upload */}
             <div
               onClick={triggerBackgroundUpload}
               className={`relative border-dashed cursor-pointer rounded-md border-2 flex flex-col-reverse items-center justify-center gap-1 p-6 text-center ${
@@ -203,7 +202,6 @@ function Cafecreate() {
               />
             </div>
 
-            {/* Name Input */}
             <div>
               <label className="text-gray-700 dark:text-silver">Name</label>
               <input
@@ -216,7 +214,6 @@ function Cafecreate() {
               />
             </div>
 
-            {/* Phone Number Input */}
             <div>
               <label className="text-gray-700 dark:text-silver">Phone</label>
               <input
@@ -229,7 +226,6 @@ function Cafecreate() {
               />
             </div>
 
-            {/* Description Input */}
             <div className="lg:col-span-2">
               <label className="text-gray-700 dark:text-silver">
                 Description
@@ -244,7 +240,6 @@ function Cafecreate() {
             </div>
           </div>
 
-          {/* Address Section */}
           <div className="mt-8">
             <h2 className="text-lg font-semibold mb-4">Address</h2>
             <input

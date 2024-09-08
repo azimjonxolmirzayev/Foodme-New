@@ -73,10 +73,10 @@ function Login() {
       );
 
       if (response.status === 200) {
-        Cookies.set("csrf_token", response.data.csrf_token, { expires: 7 });
+        // Cookies.set("csrf_token", response.data.csrf_token, { expires: 7 });
         let user_data = response.data.user;
 
-        Cookies.set("user_data", JSON.stringify(user_data), { expires: 7 });
+        // Cookies.set("user_data", JSON.stringify(user_data), { expires: 7 });
 
         setMessage("Login muvaffaqiyatli amalga oshirildi!");
         setNotificationMessage("");
@@ -150,10 +150,10 @@ function Login() {
       </h1>
       <p className="text-sm md:text-base  text-black lg:text-lg text-center mb-8">
         <a
-          href="tg://resolve?domain=wikiiichatbot"
+          href="tg://resolve?domain=foodme_robot"
           className="text-green leading-6"
         >
-          @https://t.me/wikiiichatbot
+          foodme_robot
         </a>{" "}
         telegram botiga kiring va 1 daqiqalik <br /> kodingizni oling.
       </p>
