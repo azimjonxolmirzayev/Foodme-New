@@ -3,8 +3,10 @@ import { NavLink, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { IoMdAdd } from "react-icons/io";
 import AddCategoryModal from "../../pages/UIElements/AddCategoryModal";
-
+import { BASE_URL } from "../../config/config";
 import Logo from "../../assets/logo/logo-01.png";
+import Cookies from "js-cookie";
+import axios from "axios";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -20,6 +22,33 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
   const openAddModal = () => setIsAddModalOpen(true);
   const closeAddModal = () => setIsAddModalOpen(false);
+
+  const token = JSON.parse(Cookies.get("access"));
+  const user_data = JSON.parse(Cookies.get("user_data"));
+  const user_id = user_data["id"];
+
+  const getEndpoint = "cafes/";
+  const fullUrl = `${BASE_URL}${getEndpoint}`;
+
+  try {
+    axios
+      .get(fullUrl, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        const userCafes = response.data.filter(
+          (cafe) => cafe.owner === user_id
+        );
+        Cookies.set("cafe_data", JSON.stringify(userCafes), {
+          expires: 7,
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching cafes:", error);
+      });
+  } catch (error) {}
 
   const handleAddCategory = (newCategory) => {
     const updatedCategories = [...categories, newCategory];
