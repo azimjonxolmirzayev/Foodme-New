@@ -51,7 +51,7 @@ function Header() {
       if (bool === true) {
         navigate("/admin");
       } else {
-        navigate("/create-cafe");
+        navigate("/login");
       }
     } else {
       navigate("/login");

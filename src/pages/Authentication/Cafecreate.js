@@ -9,6 +9,7 @@ import Cookies from "js-cookie";
 import { BASE_URL } from "../../config/config";
 
 function Cafecreate() {
+  const [loading, setLoading] = useState(false);
   const [logo, setLogo] = useState(null);
   const [background, setBackground] = useState(null);
   const [name, setName] = useState("");
@@ -73,7 +74,7 @@ function Cafecreate() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     const formData = new FormData();
     formData.append("name", name);
     formData.append("location", address);
@@ -95,9 +96,12 @@ function Cafecreate() {
           "X-CSRFToken": csrfToken,
           Authorization: `Bearer ${csrfToken}`,
         },
-        withCredentials: true,  
+        withCredentials: true,
       });
-      console.log("Cafe created successfully", response.data);
+      Cookies.set("cafe_data", JSON.stringify(response.data), {
+        expires: 7,
+      });
+      setLoading(false);
       navigateToDashboard();
     } catch (error) {
       console.log("Status", error.response.status);
@@ -105,6 +109,7 @@ function Cafecreate() {
         "Error creating cafe",
         error.response ? error.response.data : error.message
       );
+      setLoading(false);
       setError("There was an issue creating the cafe. Please try again.");
     }
   };
@@ -229,7 +234,7 @@ function Cafecreate() {
                 type="text"
                 className="w-full mt-2 p-3 border-b-2 border-black dark:border-white outline-none dark:bg-dark"
                 placeholder="Type here"
-                value={phoneNumber}
+                value={user_data["phone_number"]}
                 onChange={(e) => setPhoneNumber(e.target.value)}
               />
             </div>
@@ -266,8 +271,9 @@ function Cafecreate() {
           <button
             type="submit"
             className="bg-green text-white px-6 py-3 mt-8 w-full rounded-lg font-semibold"
+            disabled={loading}
           >
-            Create Cafe
+            {loading ? "Creating..." : "Create Cafe"} {/* Loading text */}
           </button>
         </form>
       </div>

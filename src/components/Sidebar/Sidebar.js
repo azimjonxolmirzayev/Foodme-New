@@ -6,7 +6,6 @@ import AddCategoryModal from "../../pages/UIElements/AddCategoryModal";
 
 import Logo from "../../assets/logo/logo-01.png";
 
-
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [categories, setCategories] = useState([]);
@@ -27,8 +26,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     setCategories(updatedCategories);
     localStorage.setItem("categories", JSON.stringify(updatedCategories));
   };
-
-  
 
   const location = useLocation();
   const { pathname } = location;
@@ -87,7 +84,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     <>
       <aside
         ref={sidebar}
-        className={`absolute no-scrollbar left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${
+        className={`absolute no-scrollbar left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-white shadow-4  duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -126,7 +123,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 <li>
                   <NavLink
                     to="/admin/allproducts"
-                    className={`group relative flex items-center justify-between gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out  ${
+                    className={`group relative flex items-center justify-between gap-2.5 rounded-sm py-2 px-4 font-medium dark:text-bodydark1 text-dark duration-300 ease-in-out  ${
                       pathname.includes("/admin/allproducts") &&
                       "bg-graydark dark:bg-meta-4"
                     }`}
@@ -153,7 +150,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 <li>
                   <NavLink
                     to=""
-                    className={`group relative flex items-center gap-2.5 justify-between rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    className={`group relative flex items-center gap-2.5 justify-between rounded-sm py-2 px-4 font-medium text-dark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 hover:text-white  ${
                       pathname.includes("/admin/freetrial") &&
                       "bg-graydark dark:bg-meta-4"
                     }`}

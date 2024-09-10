@@ -77,10 +77,10 @@ function Login() {
           expires: 7,
         });
         Cookies.set("access", JSON.stringify(response.data.access), {
-          expires: 8,
+          expires: 7,
         });
         Cookies.set("refresh", JSON.stringify(response.data.refresh), {
-          expires: 9,
+          expires: 7,
         });
 
         setMessage("Login muvaffaqiyatli amalga oshirildi!");

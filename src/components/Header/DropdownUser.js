@@ -14,7 +14,13 @@ const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleDropdown = () => setDropdownOpen((prev) => !prev);
-  const user_data = JSON.parse(Cookies.get("user_data"));
+  const userData = Cookies.get("user_data");
+
+  const data = [];
+
+  if (userData) {
+    data.push(JSON.parse(userData));
+  }
 
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
@@ -27,7 +33,7 @@ const DropdownUser = () => {
       >
         <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            {user_data["full_name"]}
+            {data.length > 0 && data[0]["full_name"]}
           </span>
         </span>
 
