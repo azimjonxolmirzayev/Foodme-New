@@ -42,10 +42,17 @@ function Header() {
   }, []);
 
   const navclick = () => {
-    const csrfToken = Cookies.get("csrf_token");
+    const userData = Cookies.get("user_data");
 
-    if (csrfToken) {
-      navigate("/create-cafe");
+    if (userData) {
+      const data = JSON.parse(userData);
+      const bool = data["has_cafe"];
+
+      if (bool === true) {
+        navigate("/admin");
+      } else {
+        navigate("/create-cafe");
+      }
     } else {
       navigate("/login");
     }

@@ -73,16 +73,23 @@ function Login() {
       );
 
       if (response.status === 200) {
-        // Cookies.set("csrf_token", response.data.csrf_token, { expires: 7 });
-        let user_data = response.data.user;
-
-        // Cookies.set("user_data", JSON.stringify(user_data), { expires: 7 });
+        Cookies.set("user_data", JSON.stringify(response.data.user), {
+          expires: 7,
+        });
+        Cookies.set("access", JSON.stringify(response.data.access), {
+          expires: 8,
+        });
+        Cookies.set("refresh", JSON.stringify(response.data.refresh), {
+          expires: 9,
+        });
 
         setMessage("Login muvaffaqiyatli amalga oshirildi!");
         setNotificationMessage("");
         setShowNotification(false);
         setIsOtpError(false);
         console.log(response.data);
+        console.log(response.data);
+        console.log(response.data.user["has_cafe"]);
         console.log(response.status);
 
         let has_cafe = response.data.user["has_cafe"];

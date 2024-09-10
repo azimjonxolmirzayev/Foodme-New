@@ -69,7 +69,7 @@ function Cafecreate() {
   const fullUrl = `${BASE_URL}${loginEndpoint}`;
 
   const user_data = JSON.parse(Cookies.get("user_data"));
-  const csrfToken = Cookies.get("csrf_token");
+  const csrfToken = JSON.parse(Cookies.get("access"));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -79,22 +79,28 @@ function Cafecreate() {
     formData.append("location", address);
     formData.append("description", description);
     formData.append("phone_number", phoneNumber);
-    formData.append("owner_id", user_data["id"]);
-    if (logo) formData.append("logo", logoInputRef.current.files[0]);
-    if (background)
+    formData.append("owner", user_data["id"]);
+    if (logoInputRef.current?.files[0]) {
+      formData.append("logo", logoInputRef.current.files[0]);
+    }
+
+    if (backgroundInputRef.current?.files[0]) {
       formData.append("bg_image", backgroundInputRef.current.files[0]);
+    }
 
     try {
       const response = await axios.post(fullUrl, formData, {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
           "X-CSRFToken": csrfToken,
+          Authorization: `Bearer ${csrfToken}`,
         },
-        withCredentials: true,
+        withCredentials: true,  
       });
       console.log("Cafe created successfully", response.data);
       navigateToDashboard();
     } catch (error) {
+      console.log("Status", error.response.status);
       console.error(
         "Error creating cafe",
         error.response ? error.response.data : error.message
@@ -157,6 +163,7 @@ function Cafecreate() {
                 onChange={handleLogoChange}
                 className="hidden"
                 ref={logoInputRef}
+                name={logo}
                 required
               />
             </div>
@@ -198,6 +205,7 @@ function Cafecreate() {
                 onChange={handleBackgroundChange}
                 className="hidden"
                 ref={backgroundInputRef}
+                name={background}
                 required
               />
             </div>

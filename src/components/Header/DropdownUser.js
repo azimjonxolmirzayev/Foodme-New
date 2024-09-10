@@ -5,6 +5,12 @@ import UserOne from "../../assets/user/user-01.jpg";
 import Cookies from "js-cookie";
 
 const DropdownUser = () => {
+  const signout = () => {
+    Cookies.remove("access");
+    Cookies.remove("refresh");
+    Cookies.remove("user_data");
+  };
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleDropdown = () => setDropdownOpen((prev) => !prev);
@@ -71,6 +77,7 @@ const DropdownUser = () => {
             </li>
             <li>
               <Link
+                onClick={signout}
                 to="/"
                 className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
               >
