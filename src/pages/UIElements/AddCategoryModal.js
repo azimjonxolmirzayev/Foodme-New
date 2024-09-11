@@ -39,7 +39,6 @@ const AddCategoryModal = ({ isOpen, onClose, onSave }) => {
         });
 
         setNotificationMessage("Categoriya yaratildi!");
-        setShowNotification(true);
 
         onClose();
       } catch (error) {
