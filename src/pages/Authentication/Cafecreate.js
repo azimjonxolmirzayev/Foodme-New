@@ -104,7 +104,7 @@ function Cafecreate() {
       setLoading(false);
       navigateToDashboard();
     } catch (error) {
-      console.log("Status", error.response.status);
+      // console.log("Status", error.response.status);
       console.error(
         "Error creating cafe",
         error.response ? error.response.data : error.message
@@ -113,6 +113,19 @@ function Cafecreate() {
       setError("There was an issue creating the cafe. Please try again.");
     }
   };
+  const user_ = Cookies.get("user_data");
+
+  const data = [];
+
+  if (user_) {
+    data.push(JSON.parse(user_));
+  }
+
+  const defaultNumber = data.length > 0 && data[0]["phone_number"];
+
+  useEffect(() => {
+    setPhoneNumber(defaultNumber);
+  }, []);
 
   return (
     <div className="min-h-screen dark:bg-dark bg-gray-100 p-4 md:p-8">
@@ -234,7 +247,7 @@ function Cafecreate() {
                 type="text"
                 className="w-full mt-2 p-3 border-b-2 border-black dark:border-white outline-none dark:bg-dark"
                 placeholder="Type here"
-                value={user_data["phone_number"]}
+                value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
               />
             </div>
