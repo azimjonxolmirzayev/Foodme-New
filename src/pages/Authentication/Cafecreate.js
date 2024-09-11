@@ -247,7 +247,6 @@ function Cafecreate() {
                 type="text"
                 className="w-full mt-2 p-3 border-b-2 border-black dark:border-white outline-none dark:bg-dark"
                 placeholder="Type here"
-                value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
               />
             </div>
